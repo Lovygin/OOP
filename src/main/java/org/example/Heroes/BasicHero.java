@@ -1,7 +1,10 @@
-package org.example;
+package org.example.Heroes;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class BasicHero {
-    int id;
+    static int id;
     int healthLevel;
     String name;
     String type;
@@ -16,4 +19,6 @@ public abstract class BasicHero {
         this.basicDamage = basicDamage;
         this.initiative = initiative;
     }
+
+
 }
