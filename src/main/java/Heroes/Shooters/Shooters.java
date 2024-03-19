@@ -1,6 +1,6 @@
-package org.example.Heroes.Shooters;
+package Heroes.Shooters;
 
-import org.example.Heroes.BasicHero;
+import Heroes.BasicHero;
 
 public abstract class Shooters extends BasicHero { // Стрелок
     int shotLength; // Длина выстрела
@@ -12,7 +12,10 @@ public abstract class Shooters extends BasicHero { // Стрелок
         this.shotLength = shotLength;
         this.capacity = capacity;
     }
-    public void setLocalId() {
+    protected void setLocalId() {
         super.setId(localId++);
     }
+    protected void reArm(){}
+    protected void fire(){}
+
 }
