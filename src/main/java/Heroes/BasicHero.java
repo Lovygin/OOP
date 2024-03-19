@@ -1,9 +1,11 @@
-package org.example.Heroes;
+package Heroes;
+
+import Interfaces.InGameInterface;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class BasicHero {
+public abstract class BasicHero implements InGameInterface {
     private int id;
     int healthLevel;
     String name;
@@ -24,5 +26,27 @@ public abstract class BasicHero {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public int getHealthLevel() {
+        return healthLevel;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getBasicDamage() {
+        return basicDamage;
+    }
+
+    public int getInitiative() {
+        return initiative;
+    }
 }

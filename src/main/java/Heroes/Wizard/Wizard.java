@@ -1,6 +1,6 @@
-package org.example.Heroes.Wizard;
+package Heroes.Wizard;
 
-import org.example.Heroes.BasicHero;
+import Heroes.BasicHero;
 
 public abstract class Wizard extends BasicHero { // Волшебники
     static Integer localId = 100;
@@ -10,8 +10,11 @@ public abstract class Wizard extends BasicHero { // Волшебники
         super(healthLevel, name, type, basicDamage, initiative);
         this.healthRecover = basicDamage;
     }
-    public void setLocalId(){
+    protected void setLocalId(){
         super.setId(localId++);
     }
+    protected void cast(){}
+
+
 
 }
