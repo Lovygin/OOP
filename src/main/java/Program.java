@@ -9,13 +9,9 @@ import Heroes.Wizard.Monk;
 import Teams.TeamsManager;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Program {
     public static void main(String[] args) {
-        //int teamCapacity = 10;
-        TeamsManager teamsManager = new TeamsManager();
-        teamsManager.setTeamCapacity(10);
 
         BasicHero kirill = new Monk("Kirill");
         BasicHero gandalf = new Magus("Gandalf");
@@ -61,25 +57,23 @@ public class Program {
         startTeam.add(neanderthal);
         startTeam.add(solovey);
 
+        TeamsManager teamsManager = new TeamsManager();
+        teamsManager.setTeamCapacity(10);
 
         ArrayList<BasicHero> leftTeam = teamsManager.leftTeamFilling();
         ArrayList<BasicHero> rightTeam = teamsManager.rightTeamFilling();
 
 
-        ArrayList<BasicHero>[] temp = teamsManager.distributionByTeam(startTeam);
-        ArrayList<BasicHero> teamOfDefectors1 = temp[0]; // команда перебежчиков
-        ArrayList<BasicHero> teamOfDefectors2 = temp[1];
-
+        ArrayList<BasicHero> teamOfDefectors = teamsManager.teamSelection(startTeam); // команда перебежчиков
 
 
         System.out.println("Right team");
         rightTeam.forEach(n -> n.getInfo()); // итерация списка и вызов метода каждого наследника
         System.out.println("Left team");
         leftTeam.forEach(n -> n.getInfo());
-        System.out.println("1st team of defectors");
-        teamOfDefectors1.forEach(n -> n.getInfo());
-        System.out.println("2nd team of defectors");
-        teamOfDefectors2.forEach(n -> n.getInfo());
+        System.out.println("Team of defectors");
+        teamOfDefectors.forEach(n -> n.getInfo());
+
     }
 
 }

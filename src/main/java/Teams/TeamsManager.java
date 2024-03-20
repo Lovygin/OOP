@@ -140,14 +140,14 @@ public class TeamsManager {
      * @param listOfUnits список созданных вручную персонажей
      * @return массив содержащий списки 2-х рандомных команд.
      */
-    public ArrayList<BasicHero>[] distributionByTeam(ArrayList<BasicHero> listOfUnits){  //Распределение по командам
+    public ArrayList<BasicHero> teamSelection(ArrayList<BasicHero> listOfUnits){  //Распределение по командам
         ArrayList<BasicHero>[] teams = new ArrayList[2];
         teams[1] = listOfUnits;
         teams[0] = new ArrayList<>();
         while (teams[0].size() < teams[1].size()) {
             teams[0].add(teams[1].remove(new Random().nextInt(teams[1].size())));
         }
-        return teams;
+        return teams[new Random().nextInt(teams.length)];
     }
 
 
