@@ -6,15 +6,16 @@ import Heroes.Shooters.Archer;
 import Heroes.Shooters.Crossbowman;
 import Heroes.Wizard.Magus;
 import Heroes.Wizard.Monk;
-import Resources.Names;
+import Teams.TeamsManager;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Program {
     public static void main(String[] args) {
-        int teamCapacity = 10;
-
+        //int teamCapacity = 10;
+        TeamsManager teamsManager = new TeamsManager();
+        teamsManager.setTeamCapacity(10);
 
         BasicHero kirill = new Monk("Kirill");
         BasicHero gandalf = new Magus("Gandalf");
@@ -26,7 +27,6 @@ public class Program {
         BasicHero legionary = new Pikeman("Legionary");
         BasicHero bandit = new Robber("Bandit");
         BasicHero pleb = new Redneck("Pleb"); // Простолюдин/ Плебей
-
         BasicHero mifodiy = new Monk("Mifodiy");
         BasicHero merlin = new Magus("Merlin");
         BasicHero braveHeart = new Pikeman("Brave heart");
@@ -38,80 +38,48 @@ public class Program {
         BasicHero farmer = new Redneck("Farmer");
         BasicHero neanderthal = new Redneck("Neanderthal"); // Неандерталец
 
-        ArrayList<BasicHero> rightTeam = new ArrayList<>();
+        ArrayList<BasicHero> startTeam = new ArrayList<>();
 
-        rightTeam.add(kirill);
-        rightTeam.add(gandalf);
-        rightTeam.add(solderJane);
-        rightTeam.add(robinGood);
-        rightTeam.add(johnD);
-        rightTeam.add(sniper);
-        rightTeam.add(sadMan);
-        rightTeam.add(legionary);
-        rightTeam.add(bandit);
-        rightTeam.add(pleb);
-        rightTeam.add(merlin);
-        rightTeam.add(mifodiy);
-        rightTeam.add(braveHeart);
-        rightTeam.add(artur);
-        rightTeam.add(curva);
-        rightTeam.add(greenArrow);
-        rightTeam.add(crossbowmanJr);
-        rightTeam.add(farmer);
-        rightTeam.add(neanderthal);
-        rightTeam.add(solovey);
-
-
-        ArrayList<BasicHero> leftTeam = new ArrayList<>();
-        ArrayList<BasicHero> greenTeam = new ArrayList<>(10);
+        startTeam.add(kirill);
+        startTeam.add(gandalf);
+        startTeam.add(solderJane);
+        startTeam.add(robinGood);
+        startTeam.add(johnD);
+        startTeam.add(sniper);
+        startTeam.add(sadMan);
+        startTeam.add(legionary);
+        startTeam.add(bandit);
+        startTeam.add(pleb);
+        startTeam.add(merlin);
+        startTeam.add(mifodiy);
+        startTeam.add(braveHeart);
+        startTeam.add(artur);
+        startTeam.add(curva);
+        startTeam.add(greenArrow);
+        startTeam.add(crossbowmanJr);
+        startTeam.add(farmer);
+        startTeam.add(neanderthal);
+        startTeam.add(solovey);
 
 
-        /**
-         * Рандомное распределение уже существующих персонажей по командам.
-         */
-        while (leftTeam.size() < rightTeam.size()) {
-            leftTeam.add(rightTeam.remove(new Random().nextInt(rightTeam.size())));
-        }
+        ArrayList<BasicHero> leftTeam = teamsManager.leftTeamFilling();
+        ArrayList<BasicHero> rightTeam = teamsManager.rightTeamFilling();
 
-        /**
-         * Рандомное создание новых персонажей и добавление их в команду.
-         * Используются рандомные имена из энумератора имен
-         */
-        for (int i = 0; i < teamCapacity; i++) {
-            int selectionCondition = new Random().nextInt(7);
-            switch (selectionCondition) {
-                case (0):
-                    greenTeam.add(new Pikeman(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)])));
-                    break;
-                case (1):
-                    greenTeam.add(new Robber(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)])));
-                    break;
-                case (2):
-                    greenTeam.add(new Archer(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)])));
-                    break;
-                case (3):
-                    greenTeam.add(new Crossbowman(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)])));
-                    break;
-                case (4):
-                    greenTeam.add(new Magus(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)])));
-                    break;
-                case (5):
-                    greenTeam.add(new Monk(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)])));
-                    break;
-                default:
-                    greenTeam.add(new Redneck(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)])));
-            }
 
-        }
+        ArrayList<BasicHero>[] temp = teamsManager.distributionByTeam(startTeam);
+        ArrayList<BasicHero> teamOfDefectors1 = temp[0]; // команда перебежчиков
+        ArrayList<BasicHero> teamOfDefectors2 = temp[1];
+
 
 
         System.out.println("Right team");
         rightTeam.forEach(n -> n.getInfo()); // итерация списка и вызов метода каждого наследника
         System.out.println("Left team");
         leftTeam.forEach(n -> n.getInfo());
-        System.out.println("Green team");
-        greenTeam.forEach(n -> n.getInfo());
-
-
+        System.out.println("1st team of defectors");
+        teamOfDefectors1.forEach(n -> n.getInfo());
+        System.out.println("2nd team of defectors");
+        teamOfDefectors2.forEach(n -> n.getInfo());
     }
+
 }
