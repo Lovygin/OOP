@@ -1,24 +1,29 @@
 package Heroes.Wizard;
 
-public class Magus extends Wizard { // Маг
-    public Magus (String name) {
-        super(50, name, "Magus", 3, 4);
+import Heroes.BasicHero;
+
+import java.util.ArrayList;
+
+public class Magus extends Wizards { // Маг
+    public Magus (String name, int x, int y) {
+        super(50, name, "Magus", 3, 4, x, y);
         super.setLocalId();
     }
 
     @Override
     public String getInfo() {
-        System.out.println("Type: " + getType() + "; " +
+        return "Type: " + getType() + "; " +
                 "Name: " + this.getName() + "; " +
                 "Health level = " + getHealthLevel() + "; " +
                 "Health recover = " + getBasicDamage() + "; " +
-                "Initiative: " + getInitiative());
-        return String.valueOf(this.getClass());
+                "Initiative: " + getInitiative()+ "; " +
+                "Position: " + super.getPlace().getX() + ":" + super.getPlace().getY();
     }
-    @Override
-    public void step() {
-        cast();
-    }
+
+//    @Override
+//    public void step(ArrayList<BasicHero> enemies) {
+//        super.step(enemies);
+//    }
 
     @Override
     protected void cast() {

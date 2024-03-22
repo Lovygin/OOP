@@ -1,9 +1,11 @@
 package Heroes;
 
 import Interfaces.InGameInterface;
+import Location.Coordinates;
 
+
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public abstract class BasicHero implements InGameInterface {
     private int id;
@@ -12,41 +14,67 @@ public abstract class BasicHero implements InGameInterface {
     String type;
     int basicDamage;
     int initiative; // Порядок хода
+    public Coordinates place = new Coordinates();
 
-    public BasicHero(int healthLevel, String name, String type, int basicDamage, int initiative) {
+    public BasicHero(int healthLevel, String name, String type, int basicDamage, int initiative, int x, int y) {
         //this.id = id;
         this.healthLevel = healthLevel;
         this.name = name;
         this.type = type;
         this.basicDamage = basicDamage;
         this.initiative = initiative;
+        this.place.setX(x);
+        this.place.setY(y);
+
     }
 
-    public void setId(int id){
+    protected void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
+    protected int getId() {
         return id;
     }
 
-    public int getHealthLevel() {
+    protected int getHealthLevel() {
         return healthLevel;
     }
 
-    public String getName() {
+    protected String getName() {
         return name;
     }
 
-    public String getType() {
+    protected String getType() {
         return type;
     }
 
-    public int getBasicDamage() {
+    protected int getBasicDamage() {
         return basicDamage;
     }
 
-    public int getInitiative() {
+    protected int getInitiative() {
         return initiative;
+    }
+
+    protected Coordinates getPlace() {
+        return place;
+    }
+
+    /**
+     *
+     * @param enemies
+     * @return int[indexOfNeededEnemyInTeam, minDistance]
+     */
+    protected int[] findNearestEnemy(ArrayList<BasicHero> enemies) {
+        float minDistance = 1000;
+        int indexOfPositionInTeamOfNeededEnemy = 0;
+        for (int i = 0; i < enemies.size(); i++) {
+            float length = place.calcDistance(enemies.get(i).place);
+            if (length < minDistance) {
+                minDistance = length;
+                indexOfPositionInTeamOfNeededEnemy = i;
+            }
+        }
+        return new int[]{indexOfPositionInTeamOfNeededEnemy, (int) minDistance};
     }
 }

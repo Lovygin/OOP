@@ -1,26 +1,30 @@
 package Heroes.Shooters;
 
+import Heroes.BasicHero;
+
+import java.util.ArrayList;
+
 public class Archer extends Shooters { // Лучник
-    public Archer(String name) {
-        super(30, name, "Archer", 5, 8, 6, 4);
+    public Archer(String name, int x, int y) {
+        super(30, name, "Archer", 5, 8, 6, 4, x, y);
         super.setLocalId();
     }
 
 
     @Override
     public String getInfo() {
-        System.out.println("Type: " + getType() + "; " +
+        return "Type: " + getType() + "; " +
                 "Name: " + this.getName() + "; " +
                 "Health level = " + getHealthLevel() + "; " +
                 "Health recover = " + getBasicDamage() + "; " +
-                "Initiative: " + getInitiative());
-        return String.valueOf(this.getClass());
+                "Initiative: " + getInitiative()+ "; " +
+                "Position: " + super.getPlace().getX() + ":" + super.getPlace().getY();
     }
-    @Override
-    public void step() {
-        reArm();
-        fire();
-    }
+
+//    @Override
+//    public void step(ArrayList<BasicHero> enemies) {
+//        super.step(enemies);
+//    }
 
     @Override
     public void reArm() {
