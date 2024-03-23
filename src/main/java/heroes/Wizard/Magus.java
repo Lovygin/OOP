@@ -1,12 +1,8 @@
-package Heroes.Wizard;
-
-import Heroes.BasicHero;
-
-import java.util.ArrayList;
+package heroes.Wizard;
 
 public class Magus extends Wizards { // Маг
     public Magus (String name, int x, int y) {
-        super(50, name, "Magus", 3, 4, x, y);
+        super(30, name, "Magus", 3, 3, x, y);
         super.setLocalId();
     }
 
@@ -17,13 +13,9 @@ public class Magus extends Wizards { // Маг
                 "Health level = " + getHealthLevel() + "; " +
                 "Health recover = " + getBasicDamage() + "; " +
                 "Initiative: " + getInitiative()+ "; " +
-                "Position: " + super.getPlace().getX() + ":" + super.getPlace().getY();
+                "Position: " + super.place.getX() + ":" + super.place.getY();
     }
 
-//    @Override
-//    public void step(ArrayList<BasicHero> enemies) {
-//        super.step(enemies);
-//    }
 
     @Override
     protected void cast() {

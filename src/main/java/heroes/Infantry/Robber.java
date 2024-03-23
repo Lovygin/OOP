@@ -1,12 +1,8 @@
-package Heroes.Infantry;
-
-import Heroes.BasicHero;
-
-import java.util.ArrayList;
+package heroes.Infantry;
 
 public class Robber extends Infantries { // Разбойник/Грабитель
     public Robber(String name, int x, int y) {
-        super(30, name, "Robber", 2, 3, x, y);
+        super(30, name, "Robber", 2, 5, x, y);
         super.setLocalId();
     }
 
@@ -17,13 +13,9 @@ public class Robber extends Infantries { // Разбойник/Грабител�
                 "Health level = " + getHealthLevel() + "; " +
                 "Health recover = " + getBasicDamage() + "; " +
                 "Initiative: " + getInitiative() + "; " +
-                "Position: " + super.getPlace().getX() + ":" + super.getPlace().getY();
+                "Position: " + super.place.getX() + ":" + super.place.getY();
     }
 
-//    @Override
-//    public void step(ArrayList<BasicHero> enemies) {
-//        super.step(enemies);
-//    }
 
     @Override
     protected void attack() {

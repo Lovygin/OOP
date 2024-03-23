@@ -1,22 +1,21 @@
-package Heroes.Shooters;
+package heroes.Shooters;
 
-import Heroes.BasicHero;
-
-import java.util.ArrayList;
-
-public class Crossbowman extends Shooters { // Арбалетчик
-    public Crossbowman(String name, int x, int y) {
-        super(30, name, "Crossbowman", 5, 8, 6, 4, x, y);
+public class Archer extends Shooters { // Лучник
+    public Archer(String name, int x, int y) {
+        super(30, name, "Archer", 5, 7, 6, 10, x, y);
         super.setLocalId();
     }
+
+
     @Override
     public String getInfo() {
         return "Type: " + getType() + "; " +
                 "Name: " + this.getName() + "; " +
                 "Health level = " + getHealthLevel() + "; " +
                 "Health recover = " + getBasicDamage() + "; " +
+                "Shoots capacity = " + shootsCapacity + "; " +
                 "Initiative: " + getInitiative()+ "; " +
-                "Position: " + super.getPlace().getX() + ":" + super.getPlace().getY();
+                "Position: " + super.place.getX() + ":" + super.place.getY();
     }
 
 //    @Override

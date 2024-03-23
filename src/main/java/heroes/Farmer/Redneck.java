@@ -1,6 +1,6 @@
-package Heroes.Farmer;
+package heroes.Farmer;
 
-import Heroes.BasicHero;
+import heroes.BasicHero;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Redneck extends BasicHero {
     static Integer localId = 400;
 
     public Redneck(String name, int x, int y) {
-        super(15, name, "Redneck", 1, 2, x, y);
+        super(30, name, "Redneck", 1, 1, x, y);
         super.setId(localId++);
     }
 
@@ -19,14 +19,16 @@ public class Redneck extends BasicHero {
                 "Health level = " + getHealthLevel() + "; " +
                 "Basic damage = " + getBasicDamage() + "; " +
                 "Initiative: " + getInitiative() + "; " +
-                "Position: " + this.getPlace().getX() + ":" + this.getPlace().getY();
+                "Position: " + this.place.getX() + ":" + this.place.getY();
     }
 
     @Override
-    public void step(ArrayList<BasicHero> enemies) {
-        int [] outputData = findNearestEnemy(enemies);
-        System.out.println("For " + getType() + " " + getName() + " the minimum distance to the enemy: |" +
-                enemies.get(outputData[0]).getInfo() + "| = " + outputData[1]);
+    public void step(ArrayList<BasicHero> enemies, ArrayList<BasicHero> friends) {
+        BasicHero nearestEnemy = findNearestEnemy(enemies);
+        System.out.println(getType() + " " + getName() + " has a minimum distance ("
+                + (int)getDistanceToNearestEnemy() + ") to |" +
+                nearestEnemy.getInfo() + "|");
+
     }
     protected void support() {
     }

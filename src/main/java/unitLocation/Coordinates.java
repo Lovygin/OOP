@@ -1,4 +1,4 @@
-package Location;
+package unitLocation;
 
 public class Coordinates {
     protected int x;
@@ -23,6 +23,7 @@ public class Coordinates {
     public int getY() {
         return y;
     }
+
 
     public void setY(int y) {
         this.y = y;

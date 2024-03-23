@@ -1,14 +1,10 @@
-package Heroes.Wizard;
-
-import Heroes.BasicHero;
-
-import java.util.ArrayList;
+package heroes.Wizard;
 
 public class Monk extends Wizards { // Монах
 
 
     public Monk(String name, int x, int y) {
-        super(50, name, "Monk", 3, 4, x, y);
+        super(30, name, "Monk", 3, 3, x, y);
         super.setLocalId();
     }
 
@@ -19,7 +15,7 @@ public class Monk extends Wizards { // Монах
                 "Health level = " + getHealthLevel() + "; " +
                 "Health recover = " + getBasicDamage() + "; " +
                 "Initiative: " + getInitiative()+ "; " +
-                "Position: " + super.getPlace().getX() + ":" + super.getPlace().getY();
+                "Position: " + super.place.getX() + ":" + super.place.getY();
     }
 
 
