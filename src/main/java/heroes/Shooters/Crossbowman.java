@@ -5,6 +5,7 @@ public class Crossbowman extends Shooters { // Арбалетчик
         super(30, name, "Crossbowman", 5, 6, 6, 8, x, y);
         super.setLocalId();
     }
+
     @Override
     public String getInfo() {
         return "Type: " + getType() + "; " +
@@ -12,18 +13,8 @@ public class Crossbowman extends Shooters { // Арбалетчик
                 "Health level = " + getHealthLevel() + "; " +
                 "Health recover = " + getBasicDamage() + "; " +
                 "Shoots capacity = " + shootsCapacity + "; " +
-                "Initiative: " + getInitiative()+ "; " +
+                "Initiative: " + getInitiative() + "; " +
                 "Position: " + super.place.getX() + ":" + super.place.getY();
     }
-
-
-    @Override
-    public void reArm() {
-        super.reArm();
-    }
-
-    @Override
-    public void fire() {
-        super.fire();
-    }
 }
+

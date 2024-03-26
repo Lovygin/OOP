@@ -15,6 +15,7 @@ public abstract class BasicHero implements InGameInterface {
     protected int initiative; // Порядок хода
     protected Coordinates place = new Coordinates();
     protected float distanceToNearestEnemy = 1000;
+    protected String state = ""; // Статус
 
     public BasicHero(int healthLevel, String name, String type, int basicDamage, int initiative, int x, int y) {
         //this.id = id;
@@ -62,6 +63,14 @@ public abstract class BasicHero implements InGameInterface {
 
     public float getDistanceToNearestEnemy() {
         return distanceToNearestEnemy;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     /**

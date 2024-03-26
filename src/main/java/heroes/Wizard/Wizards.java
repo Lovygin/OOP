@@ -10,6 +10,7 @@ public abstract class Wizards extends BasicHero { // Волшебники
     public Wizards(int healthLevel, String name, String type,
                    int basicDamage, int initiative, int x, int y) {
         super(healthLevel, name, type, basicDamage, initiative, x, y);
+        super.setState("ready");
         this.healthRecover = basicDamage;
     }
     protected void setLocalId(){

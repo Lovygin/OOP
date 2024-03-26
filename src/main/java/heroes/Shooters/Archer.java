@@ -14,22 +14,7 @@ public class Archer extends Shooters { // Лучник
                 "Health level = " + getHealthLevel() + "; " +
                 "Health recover = " + getBasicDamage() + "; " +
                 "Shoots capacity = " + shootsCapacity + "; " +
-                "Initiative: " + getInitiative()+ "; " +
+                "Initiative: " + getInitiative() + "; " +
                 "Position: " + super.place.getX() + ":" + super.place.getY();
-    }
-
-//    @Override
-//    public void step(ArrayList<BasicHero> enemies) {
-//        super.step(enemies);
-//    }
-
-    @Override
-    public void reArm() {
-        super.reArm();
-    }
-
-    @Override
-    public void fire() {
-        super.fire();
     }
 }

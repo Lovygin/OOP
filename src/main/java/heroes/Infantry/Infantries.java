@@ -9,7 +9,7 @@ public abstract class Infantries extends BasicHero { // Пехота
 
     public Infantries(int healthLevel, String name, String type, int basicDamage, int initiative, int x, int y) {
         super(healthLevel, name, type, basicDamage, initiative, x, y);
-        super.setId(localId++);
+        super.setState("ready");
 
     }
     protected void setLocalId(){

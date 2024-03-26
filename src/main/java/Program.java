@@ -36,34 +36,9 @@ public class Program {
         BasicHero farmer = new Redneck("Farmer", new Random().nextBoolean() ? 0 : 9, new Random().nextInt(50));
         BasicHero neanderthal = new Redneck("Neanderthal", new Random().nextBoolean() ? 0 : 9, new Random().nextInt(50)); // Неандерталец
 
-//        ArrayList<BasicHero> startTeam = new ArrayList<>();
-//
-//        startTeam.add(kirill);
-//        startTeam.add(gandalf);
-//        startTeam.add(solderJane);
-//        startTeam.add(robinGood);
-//        startTeam.add(johnD);
-//        startTeam.add(sniper);
-//        startTeam.add(sadMan);
-//        startTeam.add(legionary);
-//        startTeam.add(bandit);
-//        startTeam.add(pleb);
-//        startTeam.add(merlin);
-//        startTeam.add(mifodiy);
-//        startTeam.add(braveHeart);
-//        startTeam.add(artur);
-//        startTeam.add(curva);
-//        startTeam.add(greenArrow);
-//        startTeam.add(crossbowmanJr);
-//        startTeam.add(farmer);
-//        startTeam.add(neanderthal);
-//        startTeam.add(solovey);
 
         TeamsManager teamsManager = new TeamsManager();
         teamsManager.setTeamCapacity(10);
-
-//        ArrayList<BasicHero> teamOfDefectors = teamsManager.teamOfDefectorsFilling(true);
-//        //ArrayList<BasicHero> teamOfDefectors = teamsManager.creatingTwoTeamsFromListOfUnits(startTeam)[1]; // команда перебежчиков
 
 
         ArrayList<BasicHero> leftTeam = teamsManager.leftTeamFilling();
@@ -73,8 +48,6 @@ public class Program {
         unitedTeam.addAll(leftTeam);
         unitedTeam.addAll(rightTeam);
 
-        //unitedTeam.sort(Comparator.comparingInt(BasicHero::getInitiative));
-        //unitedTeam.sort((o1, o2) -> o2.getInitiative() - o1.getInitiative()); // lambda func comparator
         /**
          * Переопределяем компаратор по инициативе хода.
          */
@@ -98,14 +71,12 @@ public class Program {
 
 
         System.out.println("Steps all units: ");
-        for (
-                BasicHero item : unitedTeam) {
+        for (BasicHero item : unitedTeam) {
             if (leftTeam.contains(item)) {
                 item.step(rightTeam, leftTeam);
             } else {
                 item.step(leftTeam, rightTeam);
             }
-            System.out.println(item.getName() + "-" + item.getInitiative() + "(" + item.getId() + ")");
         }
 
     }
