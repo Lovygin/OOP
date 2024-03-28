@@ -11,13 +11,14 @@ import heroes.Wizard.Monk;
 import resources.Names;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 public class TeamsManager {
     protected ArrayList<BasicHero> rightTeam = new ArrayList<>();
     protected ArrayList<BasicHero> leftTeam = new ArrayList<>();
     protected ArrayList<BasicHero> teamOfDefectors = new ArrayList<>();
-
+    protected ArrayList<BasicHero> unitedTeam = new ArrayList<>();
     protected int teamCapacity;
 
 
@@ -49,6 +50,13 @@ public class TeamsManager {
     public ArrayList<BasicHero> getTeamOfDefectors() {
         return teamOfDefectors;
     }
+
+    public ArrayList<BasicHero> getUnitedTeam() {
+        this.unitedTeam.addAll(this.leftTeam);
+        this.unitedTeam.addAll(this.rightTeam);
+        return unitedTeam;
+    }
+
     /**
      * Метод формирующий leftTeam из рандомных персонажей
      * leftTeam может включать в себя следующих персонажей:
@@ -57,7 +65,7 @@ public class TeamsManager {
      * * Magus
      * * Redneck
      */
-    public ArrayList<BasicHero> leftTeamFilling(){
+    public ArrayList<BasicHero> leftTeamFilling() {
         for (int i = 0; i < teamCapacity; i++) {
             int selectionCondition = new Random().nextInt(4);
             switch (selectionCondition) {
@@ -76,6 +84,7 @@ public class TeamsManager {
         }
         return leftTeam;
     }
+
     /**
      * Метод формирующий rightTeam из рандомных персонажей
      * rightTeam может включать в себя следующих персонажей:
@@ -84,7 +93,7 @@ public class TeamsManager {
      * * Monk
      * * Redneck
      */
-    public ArrayList<BasicHero> rightTeamFilling(){
+    public ArrayList<BasicHero> rightTeamFilling() {
         for (int i = 0; i < teamCapacity; i++) {
             int selectionCondition = new Random().nextInt(4); //bound - 1
             switch (selectionCondition) {
@@ -102,7 +111,7 @@ public class TeamsManager {
                     break;
                 default:
                     rightTeam.add(new Redneck(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]),
-                            9,new Random().nextInt(50)));
+                            9, new Random().nextInt(50)));
             }
         }
         return rightTeam;
@@ -111,12 +120,13 @@ public class TeamsManager {
     /**
      * Метод формирующий teamOfDefectors из рандомных персонажей.
      * teamOfDefectors может включать в себя персонажей всех типов.
+     *
      * @param isCreatedLeftTeam если левая команда создана, то создается правая
      */
     public ArrayList<BasicHero> teamOfDefectorsFilling(boolean isCreatedLeftTeam) {
         for (int i = 0; i < teamCapacity; i++) {
             int selectionCondition = new Random().nextInt(7);
-            int x = isCreatedLeftTeam? 9 : 0;
+            int x = isCreatedLeftTeam ? 9 : 0;
             switch (selectionCondition) {
                 case (0):
                     teamOfDefectors.add(new Pikeman(String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]),
@@ -152,11 +162,12 @@ public class TeamsManager {
 
     /**
      * Рандомное распределение уже существующих персонажей по командам.
+     *
      * @param listOfUnits список созданных вручную персонажей
      * @return массив содержащий списки 2-х рандомных команд.
      */
 
-    public ArrayList<BasicHero>[] creatingTwoTeamsFromListOfUnits(ArrayList<BasicHero> listOfUnits){  //Распределение по командам
+    public ArrayList<BasicHero>[] creatingTwoTeamsFromListOfUnits(ArrayList<BasicHero> listOfUnits) {  //Распределение по командам
         ArrayList<BasicHero>[] teams = new ArrayList[2];
         teams[1] = listOfUnits;
         teams[0] = new ArrayList<>();
@@ -168,9 +179,26 @@ public class TeamsManager {
         return teams;
     }
 
+    /**
+     * Переопределяем компаратор по инициативе хода и
+     * по уровню здоровья, в случае если одинаковой уровень инициативы
+     */
+    private final Comparator<BasicHero> compareByInitiativeAndHP = new Comparator<BasicHero>() {
+        @Override
+        public int compare(BasicHero o1, BasicHero o2) {
+            int res = o2.getInitiative() - o1.getHealthLevel();
+            if (res != 0) return res;
+            else return o2.getHealthLevel() - o1.getHealthLevel();
+        }
+    };
 
+    public ArrayList<BasicHero> sortTeamByInitiativeAndHealthLevel() {
+        this.unitedTeam.sort(compareByInitiativeAndHP);
+        return this.unitedTeam;
+    }
 
-
-
-
+    public ArrayList<BasicHero> sortTeamByInitiativeAndHealthLevel(ArrayList<BasicHero> unitedTeam) {
+        unitedTeam.sort(compareByInitiativeAndHP);
+        return unitedTeam;
+    }
 }

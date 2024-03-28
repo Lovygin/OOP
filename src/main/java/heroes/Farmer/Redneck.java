@@ -41,7 +41,7 @@ public class Redneck extends BasicHero {
             super.setState("dead");
             return;
         }
-        BasicHero nearestEnemy = findNearestEnemy(enemies);
+        BasicHero nearestEnemy = findNearestUnit(enemies);
         System.out.println(getType() + " " + getName() + " has a minimum distance ("
                 + (int) getDistanceToNearestEnemy() + ") to |" +
                 nearestEnemy.getInfo() + "|");

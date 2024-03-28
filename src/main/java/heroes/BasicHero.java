@@ -14,7 +14,7 @@ public abstract class BasicHero implements InGameInterface {
     protected int basicDamage;
     protected int initiative; // Порядок хода
     protected Coordinates place = new Coordinates();
-    protected float distanceToNearestEnemy = 1000;
+    protected float distanceToNearestUnit = 1000;
     protected String state = ""; // Статус
 
     public BasicHero(int healthLevel, String name, String type, int basicDamage, int initiative, int x, int y) {
@@ -62,7 +62,7 @@ public abstract class BasicHero implements InGameInterface {
     }
 
     public float getDistanceToNearestEnemy() {
-        return distanceToNearestEnemy;
+        return distanceToNearestUnit;
     }
 
     public String getState() {
@@ -75,20 +75,19 @@ public abstract class BasicHero implements InGameInterface {
 
     /**
      *
-     * @param enemies, friends
+     * @param units - enemies or friends.
      * @return int[indexOfNeededEnemyInTeam, minDistance]
      */
-    protected BasicHero findNearestEnemy(ArrayList<BasicHero> enemies) {
-        //float minDistance = 1000;
-        int indexOfPositionInTeamOfNeededEnemy = 0;
-        for (int i = 0; i < enemies.size(); i++) {
-            float length = place.calcDistance(enemies.get(i).place);
-            if (length < this.distanceToNearestEnemy) {
-                this.distanceToNearestEnemy = length;
-                indexOfPositionInTeamOfNeededEnemy = i;
+    protected BasicHero findNearestUnit(ArrayList<BasicHero> units) {
+        int indexOfNeededUnitInTeam = 12;
+        for (int i = 0; i < units.size(); i++) {
+            float length = place.calcDistance(units.get(i).place);
+            if (length < this.distanceToNearestUnit) {
+                this.distanceToNearestUnit = length;
+                indexOfNeededUnitInTeam = i;
             }
         }
-        return enemies.get(indexOfPositionInTeamOfNeededEnemy);
+        return units.get(indexOfNeededUnitInTeam);
     }
 
 }

@@ -21,7 +21,7 @@ public abstract class Infantries extends BasicHero { // Пехота
 
     @Override
     public void step(ArrayList<BasicHero> enemies, ArrayList<BasicHero> friends) {
-        BasicHero nearestEnemy = findNearestEnemy(enemies);
+        BasicHero nearestEnemy = findNearestUnit(enemies);
         System.out.println(getType() + " " + getName() + " has a minimum distance ("
                 + (int)getDistanceToNearestEnemy() + ") to |" +
                 nearestEnemy.getInfo() + "|");

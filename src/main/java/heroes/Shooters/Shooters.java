@@ -1,7 +1,6 @@
 package heroes.Shooters;
 
 import heroes.BasicHero;
-import heroes.Farmer.Redneck;
 
 import java.util.ArrayList;
 
@@ -38,7 +37,7 @@ public abstract class Shooters extends BasicHero { // Стрелок
         if ((getHealthLevel() < 1) || shootsCapacity < 1) {
             return; // out from the method
         }
-        BasicHero nearestEnemy = findNearestEnemy(enemies);
+        BasicHero nearestEnemy = findNearestUnit(enemies);
         fire(nearestEnemy);
         for (BasicHero friend : friends) {
             if ((friend.getType().equals("Redneck")) && (friend.getHealthLevel() > 0) &&

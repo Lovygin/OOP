@@ -44,21 +44,9 @@ public class Program {
         ArrayList<BasicHero> leftTeam = teamsManager.leftTeamFilling();
         ArrayList<BasicHero> rightTeam = teamsManager.rightTeamFilling();
 
-        ArrayList<BasicHero> unitedTeam = new ArrayList<>();
-        unitedTeam.addAll(leftTeam);
-        unitedTeam.addAll(rightTeam);
+        ArrayList<BasicHero> unitedTeam = teamsManager.getUnitedTeam();
+        unitedTeam = teamsManager.sortTeamByInitiativeAndHealthLevel();
 
-        /**
-         * Переопределяем компаратор по инициативе хода.
-         */
-        unitedTeam.sort(new Comparator<BasicHero>() {
-            @Override
-            public int compare(BasicHero o1, BasicHero o2) {
-                int result = o2.getInitiative() - o1.getInitiative();
-                if (result != 0) return result;
-                return o2.getHealthLevel() - o1.getHealthLevel();
-            }
-        });
 
 
         System.out.println("Right team");
@@ -78,6 +66,5 @@ public class Program {
                 item.step(leftTeam, rightTeam);
             }
         }
-
     }
 }
